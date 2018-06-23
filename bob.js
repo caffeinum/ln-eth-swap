@@ -3,6 +3,8 @@ const lndInit = require('./lnd')
 
 const url = 'localhost:10002'
 
+const hash = ''
+
 lndInit(url).then(async (lnd) => {
 
 	console.log('BOB')
@@ -25,6 +27,7 @@ lndInit(url).then(async (lnd) => {
 
 	// decode pay req
   console.log('decode pay req')
+
 
 
 	// check ETH is locked
