@@ -48,13 +48,16 @@ lndInit(url).then(async (lnd) => {
   console.log('update ETH contract with preimage hash')
 
 	const swap = new Contract()
-	swap.fund(hash, '0.1') // ETH
+
+	console.log('Alice waiting for confirmation...')
+	const receipt = await swap.fund(hash, '0.1') // ETH
+
+	console.log(receipt)
 
 	console.log('send bob pay req')
 	// send bob pay_req
 
 	fs.writeFileSync("./pay_req", invoice.payment_request)
-	// process.env['PAY_REQ'] = invoice.payment_request
 
 	console.log('pay req set:', fs.readFileSync("./pay_req").toString())
 

@@ -58,7 +58,7 @@ lndInit(url).then(async (lnd) => {
 
 
 	// withdraw ETH
-  console.log('withdraw ETH')
+  console.log('withdraw ETH waiting...')
 
 	const receipt = await swap.withdraw(secret)
 
