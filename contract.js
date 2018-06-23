@@ -22,7 +22,7 @@ class Contract {
     // hash is hex string
     hash = '0x' + hash
     // hash should be bytes20
-    const value = web3.utils.toWei(value)
+    value = web3.utils.toWei(String(value))
     const receipt = this.contract.methods.fund(hash).send({ value })
   		.on('transactionHash', (hash) => console.log('tx', hash))
     return receipt
