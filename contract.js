@@ -22,9 +22,9 @@ class Contract {
     // hash is hex string
     hash = '0x' + hash
     // hash should be bytes20
-    const receipt = await this.contract.methods.fund(hash).send({
-      value: web3.utils.toWei(value)
-    })
+    const value = web3.utils.toWei(value)
+    const receipt = this.contract.methods.fund(hash).send({ value })
+  		.on('transactionHash', (hash) => console.log('tx', hash))
     return receipt
   }
 
@@ -32,7 +32,7 @@ class Contract {
     // secret is bytes32
     secret = '0x' + secret
     return this.contract.methods.withdraw(secret).send()
-  		// .on('transactionHash', (hash) => console.log('tx', hash))
+  		.on('transactionHash', (hash) => console.log('tx', hash))
   		// .on('confirmation', (n, receipt) => ( n < 5 ) ? console.log('confirmed', n) : null)
 
   }
