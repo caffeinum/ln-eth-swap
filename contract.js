@@ -31,7 +31,10 @@ class Contract {
   async withdraw(secret) {
     // secret is bytes32
     secret = '0x' + secret
-    return this.contract.methods.withdraw(secret)
+    return this.contract.methods.withdraw(secret).send()
+  		.on('transactionHash', (hash) => console.log('tx', hash))
+  		.on('confirmation', (confirmationNumber, receipt) => console.log('confirmed', confirmationNumber))
+
   }
 }
 
