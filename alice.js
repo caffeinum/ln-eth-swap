@@ -34,6 +34,10 @@ lndInit(url).then(async (lnd) => {
 
 	fund(hash)
 
+	// send bob pay_req
+
+	process.env.PAY_REQ = invoice.payment_request
+
 })
 
 const fund = (hash, contract = '0xf7f9b7a594d56a428eca849db90227c7c6093e36') => {

@@ -3,7 +3,7 @@ const lndInit = require('./lnd')
 
 const url = 'localhost:10002'
 
-const hash = ''
+const pay_req = process.env.PAY_REQ
 
 lndInit(url).then(async (lnd) => {
 
@@ -12,23 +12,12 @@ lndInit(url).then(async (lnd) => {
 	// get pay req
   console.log('get pay req')
 
-	const call = lnd.subscribeInvoices({})
-	call.on('data', function(invoice) {
-	    console.log(invoice);
-	})
-	.on('end', function() {
-	  // The server has finished sending
-	})
-	.on('status', function(status) {
-	  // Process status
-	  console.log("Current status" + status)
-	});
-
+	console.log(pay_req)
 
 	// decode pay req
   console.log('decode pay req')
 
-
+	const req = await lnd.decodePayReq({ pay_req })
 
 	// check ETH is locked
   console.log('check ETH is locked')
