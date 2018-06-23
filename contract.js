@@ -13,24 +13,20 @@ class Contract {
     })
   }
 
-  getBalance() {
+  async getBalance() {
     const receipt = await this.contract.methods.balance.call({ _secretHash: hash })
     return receipt
   }
 
-  fund(hash) {
+  async fund(hash) {
     const receipt = await this.contract.methods.fund.send({ _secretHash: hash })
     return receipt
   }
 
-  withdraw(secret) {
+  async withdraw(secret) {
     const receipt = await this.contract.methods.withdraw.send({ _secret: secret })
     return receipt
   }
-}
-
-const fund = (hash, contract = '0xf7f9b7a594d56a428eca849db90227c7c6093e36') => {
-	console.log('web3 blahblah')
 }
 
 module.exports = Contract
