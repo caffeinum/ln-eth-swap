@@ -33,13 +33,13 @@ lndInit(url).then(async (lnd) => {
 
 	console.log(detailed)
 	// extract preimage
-	const preimage = detailed.payment_preimage
+	const preimage = detailed.r_preimage
   console.log('extract preimage')
-	console.log(preimage)
+	console.log(preimage.toString('hex'))
 
 	// hash preimage
   console.log('hash preimage')
-	const secret_bytes = Buffer.from(preimage, 'hex')
+	const secret_bytes = preimage //Buffer.from(preimage, 'hex')
 
 	const hash = ripemd160(secret_bytes)
 	console.log(hash)
