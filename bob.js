@@ -10,10 +10,12 @@ lndInit(url).then(async (lnd) => {
 	// get pay req
   console.log('get pay req')
 
+	const invoice = await lnd.addInvoice({ amt: 10000 })
 
 	// decode pay req
   console.log('decode pay req')
 
+	console.log(invoice)
 	
 	// check ETH is locked
   console.log('check ETH is locked')
