@@ -28,7 +28,7 @@ lndInit(url).then(async (lnd) => {
 
 	// detailed invoice info
 	console.log('get detailed')
-	const r_hash = invoice.r_hash
+	const r_hash = invoice.r_hash.toString('hex')
 	const detailed = await lnd.lookupInvoice({ r_hash_str: r_hash })
 
 	console.log(detailed)
