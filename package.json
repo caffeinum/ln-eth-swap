@@ -1,0 +1,16 @@
+{
+  "name": "lnd-remote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "grpc": "^1.12.4",
+    "lnrpc": "^0.3.0",
+    "web3": "^1.0.0-beta.34"
+  }
+}
