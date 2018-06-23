@@ -41,7 +41,7 @@ lndInit(url).then(async (lnd) => {
   console.log('deploy ETH contract with preimage hash')
 
 	const swap = new Contract()
-	swap.fund(hash_bytes)
+	swap.fund(hash)
 
 	// send bob pay_req
 
