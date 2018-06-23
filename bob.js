@@ -22,6 +22,9 @@ lndInit(url).then(async (lnd) => {
 	const req = await lnd.decodePayReq({ pay_req })
 
 	console.log('req', req)
+
+	const hash = req.payment_hash
+
 	// check ETH is locked
   console.log('check ETH is locked')
 
@@ -30,10 +33,15 @@ lndInit(url).then(async (lnd) => {
 	// check balance
 	// const balance = await swap.getBalance()
 
+	// check hash
+	console.log('check hash')
+
+	// hash == swap.secretHash.call()
+
 	// send payment pay req
   console.log('send payment pay req')
 
-	const pay = await lnd.sendPayment({ pay_req })
+	const pay = await lnd.sendPaymentSync({ pay_req })
 
 	console.log(pay)
 	// obtain preimage
