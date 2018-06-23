@@ -34,14 +34,13 @@ lndInit(url).then(async (lnd) => {
 	const secret_bytes = Buffer.from(preimage, 'hex')
 
 	const hash = ripemd160(secret_bytes)
-	const hash_bytes = Buffer.from(hash, 'hex')
 	console.log(hash)
 
 	// deploy ETH contract with preimage hash
   console.log('deploy ETH contract with preimage hash')
 
 	const swap = new Contract()
-	swap.fund(hash)
+	swap.fund(hash, '0.1') // ETH
 
 	// send bob pay_req
 

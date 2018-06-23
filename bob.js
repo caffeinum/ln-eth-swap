@@ -33,7 +33,6 @@ lndInit(url).then(async (lnd) => {
   console.log('send payment pay req')
 
 	
-
 	// obtain preimage
   console.log('obtain preimage')
 

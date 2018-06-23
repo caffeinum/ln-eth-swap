@@ -18,12 +18,13 @@ class Contract {
     return receipt
   }
 
-  async fund(hash) {
-    // hash is Buffer
-    // hash = new Uint8Array(hash).buffer
-    // hash = [...hash]
+  async fund(hash, value) {
+    // hash is hex string
+    hash = '0x' + hash
     // hash should be bytes20
-    const receipt = await this.contract.methods.fund(hash).send()
+    const receipt = await this.contract.methods.fund(hash).send({
+      value: web3.utils.toWei(value)
+    })
     return receipt
   }
 
