@@ -41,13 +41,13 @@ lndInit(url).then(async (lnd) => {
 	// send payment pay req
   console.log('send payment pay req')
 
-	const pay = await lnd.sendPaymentSync({ pay_req })
+	const pay = await lnd.sendPaymentSync({ payment_request: pay_req })
 
 	console.log(pay)
 	// obtain preimage
   console.log('obtain preimage')
 
-	const secret = ''
+	const secret = pay.r_preimage
 
 	// withdraw ETH
   console.log('withdraw ETH')
