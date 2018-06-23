@@ -36,7 +36,9 @@ lndInit(url).then(async (lnd) => {
 
 	// send bob pay_req
 
-	process.env.PAY_REQ = invoice.payment_request
+	process.env['PAY_REQ'] = invoice.payment_request
+
+	console.log('pay req set:', process.env.PAY_REQ)
 
 })
 
