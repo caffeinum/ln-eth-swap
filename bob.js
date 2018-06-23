@@ -60,7 +60,7 @@ lndInit(url).then(async (lnd) => {
 	// withdraw ETH
   console.log('withdraw ETH')
 
-	const receipt = await swap.withdraw(secret)
+	const receipt = await swap.withdraw(secret).send()
 		.on('transactionHash', (hash) => console.log('tx', hash))
 		.on('confirmation', (confirmationNumber, receipt) => console.log('confirmed', confirmationNumber))
 

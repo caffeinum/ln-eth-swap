@@ -31,8 +31,7 @@ class Contract {
   async withdraw(secret) {
     // secret is bytes32
     secret = '0x' + secret
-    const receipt = await this.contract.methods.withdraw(secret).send()
-    return receipt
+    return this.contract.methods.withdraw(secret)
   }
 }
 
