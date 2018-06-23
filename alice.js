@@ -8,13 +8,15 @@ lndInit(url).then(async (lnd) => {
 	console.log('')
 
 	// create pay req
+  console.log('create pay req')
 
 	// extract preimage
+  console.log('extract preimage')
 
-	// hash preimage 
+	// hash preimage
+  console.log('hash preimage ')
 
 	// deploy ETH contract with preimage hash
-	
+  console.log('deploy ETH contract with preimage hash')
+
 })
-
-
