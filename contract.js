@@ -19,12 +19,12 @@ class Contract {
   }
 
   async fund(hash) {
-    const receipt = await this.contract.methods.fund.send({ _secretHash: hash })
+    const receipt = await this.contract.methods.fund({ _secretHash: hash }).send()
     return receipt
   }
 
   async withdraw(secret) {
-    const receipt = await this.contract.methods.withdraw.send({ _secret: secret })
+    const receipt = await this.contract.methods.withdraw({ _secret: secret }).send()
     return receipt
   }
 }
