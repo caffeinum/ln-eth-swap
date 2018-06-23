@@ -20,6 +20,7 @@ lndInit(url).then(async (lnd) => {
 
 	const req = await lnd.decodePayReq({ pay_req })
 
+	console.log('req', req)
 	// check ETH is locked
   console.log('check ETH is locked')
 
