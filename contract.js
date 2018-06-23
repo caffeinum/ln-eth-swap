@@ -8,8 +8,7 @@ class Contract {
 
     this.contract = new web3.eth.Contract(abi, contract, {
       from: wallet.account.address,
-      gasPrice: '10000000000000',
-      gas: 1000000
+      // gas: 1e5
     })
   }
 
