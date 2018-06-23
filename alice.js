@@ -1,5 +1,6 @@
 const web3 = require('./web3')
 const lndInit = require('./lnd')
+const fs = require('fs')
 
 const sha256 = require('js-sha256')
 
@@ -36,9 +37,10 @@ lndInit(url).then(async (lnd) => {
 
 	// send bob pay_req
 
-	process.env['PAY_REQ'] = invoice.payment_request
+	fs.writeFileSync("./pay_req", invoice.payment_request)
+	// process.env['PAY_REQ'] = invoice.payment_request
 
-	console.log('pay req set:', process.env.PAY_REQ)
+	console.log('pay req set:', fs.readFileSync("./pay_req"))
 
 })
 
