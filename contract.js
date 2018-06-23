@@ -20,9 +20,9 @@ class Contract {
 
   async fund(hash) {
     // hash is Buffer
-    hash = new Uint8Array(hash).buffer
+    // hash = new Uint8Array(hash).buffer
     // hash should be bytes20
-    const receipt = await this.contract.methods.fund({ _secretHash: hash }).send()
+    const receipt = await this.contract.methods.fund(hash).send()
     return receipt
   }
 
