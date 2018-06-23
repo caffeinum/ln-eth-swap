@@ -21,6 +21,7 @@ class Contract {
   async fund(hash) {
     // hash is Buffer
     // hash = new Uint8Array(hash).buffer
+    hash = [...hash]
     // hash should be bytes20
     const receipt = await this.contract.methods.fund(hash).send()
     return receipt
@@ -28,7 +29,7 @@ class Contract {
 
   async withdraw(secret) {
     // secret is bytes32
-    const receipt = await this.contract.methods.withdraw({ _secret: secret }).send()
+    const receipt = await this.contract.methods.withdraw(secret).send()
     return receipt
   }
 }
