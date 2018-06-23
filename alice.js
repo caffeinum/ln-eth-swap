@@ -26,8 +26,14 @@ lndInit(url).then(async (lnd) => {
 
 	console.log(invoice)
 
+	// detailed invoice info
+	console.log('get detailed')
+	const r_hash = invoice.r_hash
+	const detailed = await lnd.lookupInvoice({ r_hash_str: r_hash })
+
+	console.log(detailed)
 	// extract preimage
-	const preimage = invoice.r_preimage
+	const preimage = detailed.payment_preimage
   console.log('extract preimage')
 	console.log(preimage)
 
