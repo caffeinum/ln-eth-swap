@@ -4,7 +4,7 @@ const fs = require('fs')
 
 const url = 'localhost:10002'
 
-const pay_req = fs.readFileSync('./pay_req')
+const pay_req = fs.readFileSync('./pay_req').toString()
 
 lndInit(url).then(async (lnd) => {
 
@@ -13,7 +13,7 @@ lndInit(url).then(async (lnd) => {
 	// get pay req
   console.log('get pay req')
 
-	console.log(pay_req.toString())
+	console.log(pay_req)
 
 	// decode pay req
   console.log('decode pay req')
