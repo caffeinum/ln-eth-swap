@@ -5,13 +5,16 @@ const url = 'localhost:10001'
 
 lndInit(url).then(async (lnd) => {
 
-	console.log('')
+	console.log('ALICE')
 
 	// create pay req
   console.log('create pay req')
 
+	const invoice = await lnd.addInvoice({ amt: 10000 })
+
 	// extract preimage
   console.log('extract preimage')
+	console.log(invoice)
 
 	// hash preimage
   console.log('hash preimage ')

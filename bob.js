@@ -5,18 +5,28 @@ const url = 'localhost:10002'
 
 lndInit(url).then(async (lnd) => {
 
-	console.log('')
+	console.log('BOB')
 
 	// get pay req
   console.log('get pay req')
 
-	const invoice = await lnd.addInvoice({ amt: 10000 })
+	const call = lightning.subscribeInvoices({});
+	call.on('data', function(invoice) {
+	    console.log(invoice);
+	})
+	.on('end', function() {
+	  // The server has finished sending
+	})
+	.on('status', function(status) {
+	  // Process status
+	  console.log("Current status" + status);
+	});
+
 
 	// decode pay req
   console.log('decode pay req')
 
-	console.log(invoice)
-	
+
 	// check ETH is locked
   console.log('check ETH is locked')
 
