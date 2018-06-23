@@ -1,9 +1,10 @@
 const web3 = require('./web3')
 const lndInit = require('./lnd')
+const fs = require('fs')
 
 const url = 'localhost:10002'
 
-const pay_req = process.env.PAY_REQ
+const pay_req = fs.readFileSync('./pay_req')
 
 lndInit(url).then(async (lnd) => {
 
@@ -12,7 +13,7 @@ lndInit(url).then(async (lnd) => {
 	// get pay req
   console.log('get pay req')
 
-	console.log(pay_req)
+	console.log(pay_req.toString())
 
 	// decode pay req
   console.log('decode pay req')
