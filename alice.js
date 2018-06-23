@@ -1,7 +1,11 @@
 const web3 = require('./web3')
 const lndInit = require('./lnd')
 const fs = require('fs')
+const Contract = require('./contract')
 
+const RIPEMD160 = require('ripemd160')
+
+const ripemd160 = (bytes) => new RIPEMD160().update(bytes).digest('hex')
 const sha256 = require('js-sha256')
 
 const url = 'localhost:10001'
@@ -26,14 +30,15 @@ lndInit(url).then(async (lnd) => {
 	console.log(preimage)
 
 	// hash preimage
-  console.log('hash preimage ')
-	const hash = sha256(preimage)
+  console.log('hash preimage')
+	const hash = ripemd160(preimage)
 	console.log(hash)
 
 	// deploy ETH contract with preimage hash
   console.log('deploy ETH contract with preimage hash')
 
-	fund(hash)
+	const swap = new Contract()
+	swap.fund(hash)
 
 	// send bob pay_req
 
@@ -43,7 +48,3 @@ lndInit(url).then(async (lnd) => {
 	console.log('pay req set:', fs.readFileSync("./pay_req"))
 
 })
-
-const fund = (hash, contract = '0xf7f9b7a594d56a428eca849db90227c7c6093e36') => {
-	console.log('web3 blahblah')
-}

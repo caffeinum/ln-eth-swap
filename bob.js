@@ -1,6 +1,7 @@
 const web3 = require('./web3')
 const lndInit = require('./lnd')
 const fs = require('fs')
+const Contract = require('./contract')
 
 const url = 'localhost:10002'
 
@@ -24,8 +25,14 @@ lndInit(url).then(async (lnd) => {
 	// check ETH is locked
   console.log('check ETH is locked')
 
+	const swap = new Contract()
+
+	// const balance = await swap.getBalance()
+
 	// send payment pay req
   console.log('send payment pay req')
+
+	
 
 	// obtain preimage
   console.log('obtain preimage')

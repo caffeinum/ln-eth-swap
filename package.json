@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "alice": "PRIV=0x8b8d2ec664a9b0a2553c414040fd626ba01d8adee7d826cfc124369cf4afe170 node alice.js",
+    "bob": "PRIV=0x79ac3fac7e8dbaeeb117d84e78815b9ce253bbb01a3daa6298d6a2aead8f0a6e node bob.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "grpc": "^1.12.4",
     "js-sha256": "^0.9.0",
     "lnrpc": "^0.3.0",
+    "ripemd160": "^2.0.2",
     "web3": "^1.0.0-beta.34"
   }
 }
