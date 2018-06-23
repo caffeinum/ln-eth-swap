@@ -27,16 +27,22 @@ lndInit(url).then(async (lnd) => {
 
 	const swap = new Contract()
 
+	// check balance
 	// const balance = await swap.getBalance()
 
 	// send payment pay req
   console.log('send payment pay req')
 
-	
+	const pay = await lnd.sendPayment({ pay_req })
+
+	console.log(pay)
 	// obtain preimage
   console.log('obtain preimage')
+
+	const secret = ''
 
 	// withdraw ETH
   console.log('withdraw ETH')
 
+	const req = await swap.withdraw(secret)
 })
