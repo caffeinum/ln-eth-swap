@@ -47,7 +47,7 @@ lndInit(url).then(async (lnd) => {
 	// obtain preimage
   console.log('obtain preimage')
 
-	const secret = pay.r_preimage
+	const secret = pay.payment_preimage.toString('hex')
 
 	// withdraw ETH
   console.log('withdraw ETH')
