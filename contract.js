@@ -33,7 +33,7 @@ class Contract {
     secret = '0x' + secret
     return this.contract.methods.withdraw(secret).send()
   		.on('transactionHash', (hash) => console.log('tx', hash))
-  		.on('confirmation', (confirmationNumber, receipt) => console.log('confirmed', confirmationNumber))
+  		.on('confirmation', (n, receipt) => if ( n < 5 ) console.log('confirmed', n))
 
   }
 }
