@@ -62,5 +62,7 @@ lndInit(url).then(async (lnd) => {
 
 	const receipt = await swap.withdraw(secret)
 
-	console.log('receipt')
+	console.log('receipt', receipt)
+
+	receipt.on('transactionHash', (hash) => console.log('tx', hash))
 })
