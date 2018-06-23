@@ -7,10 +7,15 @@ lndInit(url).then(async (lnd) => {
 
 	console.log('ALICE')
 
+	// check balance
+	const balance = await lnd.walletBalance({})
+
+	console.log('check balance', balance)
+
 	// create pay req
   console.log('create pay req')
 
-	const invoice = await lnd.AddInvoice({ amt: 10000 })
+	const invoice = await lnd.addInvoice({ amt: 10000 })
 
 	// extract preimage
   console.log('extract preimage')
