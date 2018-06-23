@@ -19,11 +19,13 @@ class Contract {
   }
 
   async fund(hash) {
+    // hash is bytes20
     const receipt = await this.contract.methods.fund({ _secretHash: hash }).send()
     return receipt
   }
 
   async withdraw(secret) {
+    // secret is bytes32
     const receipt = await this.contract.methods.withdraw({ _secret: secret }).send()
     return receipt
   }
