@@ -24,8 +24,10 @@ lndInit(url).then(async (lnd) => {
 
 	const invoice = await lnd.addInvoice({ value: 10000 })
 
+	console.log(invoice)
+
 	// extract preimage
-	const preimage = invoice.r_hash
+	const preimage = invoice.r_preimage
   console.log('extract preimage')
 	console.log(preimage)
 

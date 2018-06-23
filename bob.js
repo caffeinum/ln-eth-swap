@@ -3,6 +3,10 @@ const lndInit = require('./lnd')
 const fs = require('fs')
 const Contract = require('./contract')
 
+const RIPEMD160 = require('ripemd160')
+
+const ripemd160 = (bytes) => new RIPEMD160().update(bytes).digest('hex')
+
 const url = 'localhost:10002'
 
 const pay_req = fs.readFileSync('./pay_req').toString()
@@ -50,7 +54,9 @@ lndInit(url).then(async (lnd) => {
 	const secret = pay.payment_preimage.toString('hex')
 
 	console.log(secret)
-	
+	console.log('hash', ripemd160(Buffer.from(secret, 'hex')))
+
+
 	// withdraw ETH
   console.log('withdraw ETH')
 
