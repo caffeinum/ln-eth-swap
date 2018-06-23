@@ -10,7 +10,7 @@ lndInit(url).then(async (lnd) => {
 	// get pay req
   console.log('get pay req')
 
-	const call = lightning.subscribeInvoices({});
+	const call = lnd.subscribeInvoices({})
 	call.on('data', function(invoice) {
 	    console.log(invoice);
 	})
@@ -19,7 +19,7 @@ lndInit(url).then(async (lnd) => {
 	})
 	.on('status', function(status) {
 	  // Process status
-	  console.log("Current status" + status);
+	  console.log("Current status" + status)
 	});
 
 
