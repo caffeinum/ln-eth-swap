@@ -3,14 +3,24 @@ const lndInit = require('./lnd')
 const fs = require('fs')
 const Contract = require('./contract')
 
-const RIPEMD160 = require('ripemd160')
+const wallet = require('./wallet')
+wallet.init('0x8b8d2ec664a9b0a2553c414040fd626ba01d8adee7d826cfc124369cf4afe170')
 
-const ripemd160 = (bytes) => new RIPEMD160().update(bytes).digest('hex')
+const ALICE_ADDRESS = wallet.account.address
+const BOB_ADDRESS = '0x49A463bE2b7aAefEc4a2f7356c477D1085dA25f3'
+
+console.log('ALICE ADDRESS', ALICE_ADDRESS)
+
+const SWAP_ETH_VALUE = '0.1'
+const SWAP_BTC_VALUE = 10000
+
 const sha256 = require('js-sha256')
 
-const url = 'localhost:10001'
+const host = process.env.HOST || 'localhost'
+const url = `${host}:10001`
+const aliceMacaroon = './alice/admin.macaroon'
 
-lndInit(url).then(async (lnd) => {
+lndInit(url, aliceMacaroon).then(async (lnd) => {
 
 	console.log('ALICE')
 
@@ -22,7 +32,7 @@ lndInit(url).then(async (lnd) => {
 	// create pay req
   console.log('create pay req')
 
-	const invoice = await lnd.addInvoice({ value: 10000 })
+	const invoice = await lnd.addInvoice({ value: SWAP_BTC_VALUE })
 
 	console.log(invoice)
 
@@ -41,7 +51,7 @@ lndInit(url).then(async (lnd) => {
   console.log('hash preimage')
 	const secret_bytes = preimage //Buffer.from(preimage, 'hex')
 
-	const hash = ripemd160(secret_bytes)
+	const hash = sha256(secret_bytes)
 	console.log(hash)
 
 	// deploy ETH contract with preimage hash
@@ -50,7 +60,7 @@ lndInit(url).then(async (lnd) => {
 	const swap = new Contract()
 
 	console.log('Alice waiting for confirmation...')
-	const receipt = await swap.fund(hash, '0.1') // ETH
+	const receipt = await swap.fund(BOB_ADDRESS, hash, SWAP_ETH_VALUE) // ETH
 
 	console.log(receipt)
 

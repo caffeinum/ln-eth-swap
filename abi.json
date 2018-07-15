@@ -1,22 +1,13 @@
 [
   {
-    "constant": false,
+    "constant": true,
     "inputs": [
       {
-        "name": "_secretHash",
-        "type": "bytes20"
+        "name": "creator",
+        "type": "address"
       }
     ],
-    "name": "fund",
-    "outputs": [],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getSecret",
+    "name": "getHash",
     "outputs": [
       {
         "name": "",
@@ -31,6 +22,10 @@
     "constant": false,
     "inputs": [
       {
+        "name": "creator",
+        "type": "address"
+      },
+      {
         "name": "_secret",
         "type": "bytes32"
       }
@@ -40,5 +35,97 @@
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      },
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "swaps",
+    "outputs": [
+      {
+        "name": "secret",
+        "type": "bytes32"
+      },
+      {
+        "name": "secretHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "createdAt",
+        "type": "uint256"
+      },
+      {
+        "name": "balance",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "recipient",
+        "type": "address"
+      },
+      {
+        "name": "_secretHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "deposit",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "creator",
+        "type": "address"
+      }
+    ],
+    "name": "getBalance",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "recipient",
+        "type": "address"
+      }
+    ],
+    "name": "refund",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   }
 ]

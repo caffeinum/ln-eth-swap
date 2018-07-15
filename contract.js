@@ -3,7 +3,7 @@ const abi = require('./abi')
 const wallet = require('./wallet')
 
 class Contract {
-  constructor(contract = '0xf7f9b7a594d56a428eca849db90227c7c6093e36') {
+  constructor(contract = '0x8f468834bf4bbb98512e5bc1c6acb30f844973c7') {
     if (!wallet.account) throw new Error('init wallet')
 
     this.contract = new web3.eth.Contract(abi, contract, {
@@ -13,25 +13,26 @@ class Contract {
     })
   }
 
-  async getBalance() {
-    const receipt = await this.contract.methods.balance.call({ _secretHash: hash })
+  async getBalance(recipient) {
+    //{ _secretHash: hash }
+    const receipt = await this.contract.methods.getBalance(recipient).call()
     return receipt
   }
 
-  async fund(hash, value) {
+  async fund(recipient, hash, value) {
     // hash is hex string
     hash = '0x' + hash
     // hash should be bytes20
     value = web3.utils.toWei(String(value))
-    const receipt = this.contract.methods.fund(hash).send({ value })
+    const receipt = this.contract.methods.deposit(recipient, hash).send({ value })
   		.on('transactionHash', (hash) => console.log('tx', hash))
     return receipt
   }
 
-  async withdraw(secret) {
+  async withdraw(creator, secret) {
     // secret is bytes32
     secret = '0x' + secret
-    return this.contract.methods.withdraw(secret).send()
+    return this.contract.methods.withdraw(creator, secret).send()
   		.on('transactionHash', (hash) => console.log('tx', hash))
   		// .on('confirmation', (n, receipt) => ( n < 5 ) ? console.log('confirmed', n) : null)
 

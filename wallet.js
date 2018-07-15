@@ -31,6 +31,6 @@ const wallet = {
   }
 }
 
-wallet.init(process.env.PRIV)
+// wallet.init(process.env.PRIV)
 
 module.exports = wallet

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+lnd --rpclisten=localhost:10002 --listen=localhost:10012 --restlisten=localhost:8002 \
+    --datadir=bob --logdir=bob/log --debuglevel=info \
+    --bitcoin.simnet --bitcoin.active \
+    --bitcoin.node=btcd --btcd.rpcuser=caffeinum --btcd.rpcpass=aspirine

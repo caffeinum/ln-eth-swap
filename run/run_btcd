@@ -1,0 +1,5 @@
+#!/bin/sh
+
+btcd --txindex --simnet \
+     --rpcuser=caffeinum --rpcpass=aspirine \
+     --miningaddr=rcq4JaYfV9L7PX33Tz5nRnrpieqRRtk148 

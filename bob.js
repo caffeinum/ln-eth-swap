@@ -3,15 +3,23 @@ const lndInit = require('./lnd')
 const fs = require('fs')
 const Contract = require('./contract')
 
-const RIPEMD160 = require('ripemd160')
+const wallet = require('./wallet')
+wallet.init('0x79ac3fac7e8dbaeeb117d84e78815b9ce253bbb01a3daa6298d6a2aead8f0a6e')
 
-const ripemd160 = (bytes) => new RIPEMD160().update(bytes).digest('hex')
+const ALICE_ADDRESS = '0x15a38F422F81Fb90003323760E0A71f4DcA34255'
+const BOB_ADDRESS = wallet.account.address
 
-const url = 'localhost:10002'
+console.log('BOB ADDRESS', BOB_ADDRESS)
+
+const sha256 = require('js-sha256')
+
+const host = process.env.HOST || 'localhost'
+const url = `${host}:10002`
+const bobMacaroon = './bob/admin.macaroon'
 
 const pay_req = fs.readFileSync('./pay_req').toString()
 
-lndInit(url).then(async (lnd) => {
+lndInit(url, bobMacaroon).then(async (lnd) => {
 
 	console.log('BOB')
 
@@ -54,13 +62,13 @@ lndInit(url).then(async (lnd) => {
 	const secret = pay.payment_preimage.toString('hex')
 
 	console.log(secret)
-	console.log('hash', ripemd160(Buffer.from(secret, 'hex')))
+	console.log('hash', sha256(Buffer.from(secret, 'hex')))
 
 
 	// withdraw ETH
   console.log('withdraw ETH waiting...')
 
-	const receipt = await swap.withdraw(secret)
+	const receipt = await swap.withdraw(ALICE_ADDRESS, secret)
 
 	console.log('receipt', receipt)
 	console.log('tx hash ', receipt.transactionHash)
